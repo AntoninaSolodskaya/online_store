@@ -1,7 +1,10 @@
-export default function Index() {
-    return (
+import Link from "next/link";
+
+const Home = props => (
         <div>
-        <p>Hello Next.js</p>
+        <Link href="/sell">
+            <a>Sell!</a>
+        </Link>
     </div>
 );
-}
+export default Home;
