@@ -4,12 +4,12 @@ import gql from 'graphql-tag';
 import { CURRENT_USER_QUERY } from './User';
 
 const ADD_TO_CART_MUTATION = gql`
-  mutation addToCart($id: ID!) {
-    addToCart(id: $id) {
-      id
-      quantity
+    mutation addToCart($id: ID!) {
+        addToCart(id: $id) {
+            id
+            quantity
+        }
     }
-  }
 `;
 
 class AddToCart extends React.Component {
@@ -33,3 +33,4 @@ class AddToCart extends React.Component {
     }
 }
 export default AddToCart;
+export { ADD_TO_CART_MUTATION };

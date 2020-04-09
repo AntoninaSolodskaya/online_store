@@ -28,13 +28,12 @@ const CREATE_ITEM_MUTATION = gql`
 
 class CreateItem extends Component {
     state = {
-        title: 'Cool Shoes',
-        description: 'I love those shoes',
-        image: 'dog.jpg',
-        largeImage: 'large-dog.jpg',
-        price: 1000,
+        title: '',
+        description: '',
+        image: '',
+        largeImage: '',
+        price: 0,
     };
-
     handleChange = e => {
         const { name, type, value } = e.target;
         const val = type === 'number' ? parseFloat(value) : value;
@@ -42,29 +41,27 @@ class CreateItem extends Component {
     };
 
     uploadFile = async e => {
-        console.log('uploading file...');
         const files = e.target.files;
         const data = new FormData();
         data.append('file', files[0]);
         data.append('upload_preset', 'sickfits');
 
-        const res = await fetch('https://api.cloudinary.com/v1_1/dtjecxmwj/image/upload/', {
+        const res = await fetch('https://api.cloudinary.com/v1_1/wesbostutorial/image/upload', {
             method: 'POST',
             body: data,
         });
         const file = await res.json();
-        console.log(file);
         this.setState({
             image: file.secure_url,
             largeImage: file.eager[0].secure_url,
         });
     };
-
     render() {
         return (
-            <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state} >
+            <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
                 {(createItem, { loading, error }) => (
                     <Form
+                        data-test="form"
                         onSubmit={async e => {
                             // Stop the form from submitting
                             e.preventDefault();

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import { parseISO, format } from 'date-fns'
+import { format } from 'date-fns';
 import Head from 'next/head';
 import gql from 'graphql-tag';
 import formatMoney from '../lib/formatMoney';
@@ -42,7 +42,7 @@ class Order extends React.Component {
                     if (loading) return <p>Loading...</p>;
                     const order = data.order;
                     return (
-                        <OrderStyles>
+                        <OrderStyles data-test="order">
                             <Head>
                                 <title>Sick Fits - Order {order.id}</title>
                             </Head>
@@ -56,7 +56,7 @@ class Order extends React.Component {
                             </p>
                             <p>
                                 <span>Date</span>
-                                <span>{format(parseISO(order.createdAt), 'MMMM d, yyyy h:mm a')}</span>
+                                <span>{format(order.createdAt, 'MMMM d, YYYY h:mm a')}</span>
                             </p>
                             <p>
                                 <span>Order Total</span>
@@ -89,3 +89,4 @@ class Order extends React.Component {
 }
 
 export default Order;
+export { SINGLE_ORDER_QUERY };

@@ -34,7 +34,6 @@ const SINGLE_ITEM_QUERY = gql`
         }
     }
 `;
-
 class SingleItem extends Component {
     render() {
         return (
@@ -68,3 +67,4 @@ class SingleItem extends Component {
 }
 
 export default SingleItem;
+export { SINGLE_ITEM_QUERY };
