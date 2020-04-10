@@ -11,6 +11,7 @@
     "test-win": "SET NODE_ENV=test&& jest --watch",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false next build"
   },
+  "proxy": "https://yoga-prod-sickfits.herokuapp.com/",
   "keywords": [],
   "author": "",
   "license": "ISC",
