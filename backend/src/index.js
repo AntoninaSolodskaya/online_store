@@ -7,10 +7,10 @@ const db = require('./db');
 
 const server = createServer();
 
-server.express.use(cookieParser());
+server.use(cookieParser());
 
 // decode the JWT so we can get the user Id on each request
-server.express.use((req, res, next) => {
+server.use((req, res, next) => {
     const { token } = req.cookies;
     if (token) {
         const { userId } = jwt.verify(token, process.env.APP_SECRET);
@@ -22,7 +22,7 @@ server.express.use((req, res, next) => {
 
 // Create a middleware that populates the user on each request
 
-server.express.use(async (req, res, next) => {
+server.use(async (req, res, next) => {
     // if they aren't logged in, skip this
     if (!req.userId) return next();
     const user = await db.query.user(
