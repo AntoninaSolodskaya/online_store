@@ -9,7 +9,7 @@
     "start": "next start -p $PORT",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false next build"
   },
   "keywords": [],
   "author": "",
